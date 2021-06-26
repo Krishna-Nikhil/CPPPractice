@@ -21,11 +21,15 @@ class Base {
         return *p + *obj.p;
     }
     
-    void operator () (int x) {
-        *p = *p + x;
+    int  operator () (int x) {
+        return *p = *p + x;
     }
     
 };
+
+int operator / (Base& obj1, Base& obj2) { //Make it friend function in Base if p is private variable.
+    return (*obj1.p)/(*obj2.p);
+}
 
 int main() {
     Base b;
@@ -38,6 +42,7 @@ int main() {
     cout << b+d << endl;
     b(10);
     cout << *b.p << endl;
+    cout << b/d << endl;
 }
 
 /*
@@ -46,4 +51,5 @@ int main() {
 0x1d44c20 0x1d44c40
 14
 20
+5
 */
